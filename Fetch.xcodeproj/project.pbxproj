@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D2195EC425EB123F00442209 /* DateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2195EC325EB123F00442209 /* DateFormatter+Extensions.swift */; };
+		D2195EC925EB18EC00442209 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2195EC825EB18EC00442209 /* Venue.swift */; };
 		D22E8A3025EACAAF00D2DA81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E8A2F25EACAAF00D2DA81 /* AppDelegate.swift */; };
 		D22E8A3225EACAAF00D2DA81 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E8A3125EACAAF00D2DA81 /* SceneDelegate.swift */; };
 		D22E8A3425EACAAF00D2DA81 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E8A3325EACAAF00D2DA81 /* ViewController.swift */; };
@@ -15,6 +17,8 @@
 		D22E8A3C25EACAB000D2DA81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D22E8A3A25EACAB000D2DA81 /* LaunchScreen.storyboard */; };
 		D22E8A4725EACAB000D2DA81 /* FetchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E8A4625EACAB000D2DA81 /* FetchTests.swift */; };
 		D22E8A5225EACAB000D2DA81 /* FetchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E8A5125EACAB000D2DA81 /* FetchUITests.swift */; };
+		D22E8A6B25EACFE100D2DA81 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E8A6A25EACFE100D2DA81 /* Event.swift */; };
+		D22E8A7125EAD1F400D2DA81 /* APIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E8A7025EAD1F400D2DA81 /* APIController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D2195EC325EB123F00442209 /* DateFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extensions.swift"; sourceTree = "<group>"; };
+		D2195EC825EB18EC00442209 /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		D22E8A2C25EACAAF00D2DA81 /* Fetch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fetch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D22E8A2F25EACAAF00D2DA81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D22E8A3125EACAAF00D2DA81 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +55,8 @@
 		D22E8A4D25EACAB000D2DA81 /* FetchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FetchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D22E8A5125EACAB000D2DA81 /* FetchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchUITests.swift; sourceTree = "<group>"; };
 		D22E8A5325EACAB000D2DA81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D22E8A6A25EACFE100D2DA81 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		D22E8A7025EAD1F400D2DA81 /* APIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +84,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D2195EC225EB122000442209 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D2195EC325EB123F00442209 /* DateFormatter+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		D22E8A2325EACAAF00D2DA81 = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +115,8 @@
 		D22E8A2E25EACAAF00D2DA81 /* Fetch */ = {
 			isa = PBXGroup;
 			children = (
+				D2195EC225EB122000442209 /* Extensions */,
+				D22E8A6F25EAD1DC00D2DA81 /* API */,
 				D22E8A6925EACC8F00D2DA81 /* Storyboards */,
 				D22E8A6825EACC8500D2DA81 /* Views */,
 				D22E8A6725EACC7700D2DA81 /* View Controllers */,
@@ -140,6 +158,8 @@
 		D22E8A6625EACC6E00D2DA81 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D22E8A6A25EACFE100D2DA81 /* Event.swift */,
+				D2195EC825EB18EC00442209 /* Venue.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -166,6 +186,14 @@
 				D22E8A3A25EACAB000D2DA81 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		D22E8A6F25EAD1DC00D2DA81 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				D22E8A7025EAD1F400D2DA81 /* APIController.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,7 +326,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D22E8A6B25EACFE100D2DA81 /* Event.swift in Sources */,
 				D22E8A3425EACAAF00D2DA81 /* ViewController.swift in Sources */,
+				D2195EC425EB123F00442209 /* DateFormatter+Extensions.swift in Sources */,
+				D2195EC925EB18EC00442209 /* Venue.swift in Sources */,
+				D22E8A7125EAD1F400D2DA81 /* APIController.swift in Sources */,
 				D22E8A3025EACAAF00D2DA81 /* AppDelegate.swift in Sources */,
 				D22E8A3225EACAAF00D2DA81 /* SceneDelegate.swift in Sources */,
 			);
@@ -478,7 +510,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7SF2KFH336;
-				INFOPLIST_FILE = Fetch/Info.plist;
+				INFOPLIST_FILE = Fetch/App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -498,7 +530,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7SF2KFH336;
-				INFOPLIST_FILE = Fetch/Info.plist;
+				INFOPLIST_FILE = Fetch/App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
