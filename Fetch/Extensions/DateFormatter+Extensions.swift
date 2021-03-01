@@ -16,4 +16,14 @@ extension DateFormatter {
         formatter.locale = Locale(identifier: "en_US_POSIX")
         return formatter
     }()
+    
+    static let dayDateTime: DateFormatter = {
+        // EEEE, d MMM yyyy h:mm a
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, d MMM yyyy h:mm a"
+        formatter.calendar = Calendar(identifier: .iso8601)
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        return formatter
+    }()
 }
