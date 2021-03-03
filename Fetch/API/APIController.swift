@@ -20,7 +20,7 @@ class APIController {
     let baseURL: URL = URL(string: "https://api.seatgeek.com/2/")!
     let clientId: String? = ""
     
-    func fetchAllEvents(completion: @escaping (Result<[Event], NetworkError>) -> Void) {
+    func fetchAllEvents(search: String? = nil, completion: @escaping (Result<[Event], NetworkError>) -> Void) {
         guard let token = clientId, !token.isEmpty else {
             NSLog("No Auth token in API Controller")
             completion(.failure(.NotAuthorized))
@@ -29,7 +29,10 @@ class APIController {
         
         var urlComponents = URLComponents(url: baseURL.appendingPathComponent("events"), resolvingAgainstBaseURL: true)
 
-        let queryParams = [URLQueryItem(name: "client_id", value: token)]
+        var queryParams = [URLQueryItem(name: "client_id", value: token)]
+        if let searchText = search {
+            queryParams.append(URLQueryItem(name: "q", value: searchText))
+        }
         urlComponents?.queryItems = queryParams
         
         guard let endPointURL = urlComponents?.url else {
@@ -68,7 +71,6 @@ class APIController {
                 completion(.failure(.NoDecode))
                 return
             }
-            
             
         }
         
