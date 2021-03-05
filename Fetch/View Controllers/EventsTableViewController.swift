@@ -121,7 +121,7 @@ extension EventsTableViewController: UITableViewDataSource {
         if let imageData = event.imageData {
             cell.eventImageView.image = UIImage(data: imageData)
         } else {
-            loadImage(forCell: cell, forItemAt: indexPath)            
+            loadImage(forCell: cell, forItemAt: indexPath)
         }
         
         return cell
@@ -144,7 +144,9 @@ extension EventsTableViewController: UITableViewDataSource {
                     if let image = UIImage(data: data) {
                         // For now we'll just cache the image data on the model itself
                         event.setImageData(data: data)
+                        // Then replace model in our local events array because we mutated it
                         self.events[indexPath.row] = event
+                        // Update the image view with our image
                         cell.eventImageView.image = image
                         
                     }
