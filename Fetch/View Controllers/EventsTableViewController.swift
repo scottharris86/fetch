@@ -117,7 +117,12 @@ extension EventsTableViewController: UITableViewDataSource {
         let event = events[indexPath.row]
         cell.dateFormatter = dateFormatter
         cell.event = event
-        loadImage(forCell: cell, forItemAt: indexPath)
+        
+        if let imageData = event.imageData {
+            cell.eventImageView.image = UIImage(data: imageData)
+        } else {
+            loadImage(forCell: cell, forItemAt: indexPath)            
+        }
         
         return cell
     }
