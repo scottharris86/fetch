@@ -12,6 +12,7 @@ class EventsTableViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let apiController = APIController()
+    let favoritesController = FavoriteComtroller()
     let searchController = UISearchController(searchResultsController: nil)
     var events: [Event] = []
     lazy var dateFormatter = DateFormatter.dayDateTime
@@ -26,7 +27,11 @@ class EventsTableViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         configureSearchController()
-        fetchEvents()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchEvents(searchText: searchController.searchBar.text)
     }
     
     private func fetchEvents(searchText: String? = nil) {
@@ -116,6 +121,12 @@ extension EventsTableViewController: UITableViewDataSource {
         
         let event = events[indexPath.row]
         cell.dateFormatter = dateFormatter
+        if let _ = favoritesController.favorites[event.id] {
+            cell.isFavorite = true
+        } else {
+            cell.isFavorite = false
+        }
+        
         cell.event = event
         
         if let imageData = event.imageData {
@@ -166,6 +177,7 @@ extension EventsTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let event = events[indexPath.row]
         let detailVC = EventDetailViewController()
+        detailVC.favoritesController = favoritesController
         detailVC.event = event
         detailVC.modalPresentationStyle = .fullScreen
         present(detailVC, animated: true)
@@ -179,7 +191,10 @@ extension EventsTableViewController: UISearchResultsUpdating, UISearchBarDelegat
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         // Check for non empty text
-        guard let searchText = searchBar.text, !searchText.isEmpty else { return }
+        guard let searchText = searchBar.text, !searchText.isEmpty else {
+            self.search(text: "")
+            return
+        }
         
         // Cancel previous task if any
         self.searchTask?.cancel()
@@ -195,4 +210,5 @@ extension EventsTableViewController: UISearchResultsUpdating, UISearchBarDelegat
         // Execute task in 0.25 seconds (if not cancelled !)
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.25, execute: task)
     }
+    
 }

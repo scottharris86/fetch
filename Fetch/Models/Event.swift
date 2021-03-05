@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Event: Decodable {
+struct Event: Codable {
     let id: Int
     let title: String
     let dateTime: Date
@@ -52,6 +52,18 @@ struct Event: Decodable {
         
         imageURL = URL(string: imageURLString)!
         
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(title, forKey: .title)
+        try container.encode(dateTime, forKey: .dateTime)
+        try container.encode(eventType, forKey: .eventType)
+        try container.encode(venue, forKey: .venue)
+        var performersContainerArray = container.nestedUnkeyedContainer(forKey: .performers)
+        var performerContainer = performersContainerArray.nestedContainer(keyedBy: CodingKeys.PerformerCodingKeys.self)
+        try performerContainer.encode(imageURL.absoluteString, forKey: .image)
     }
     
     mutating func setImageData(data: Data) {

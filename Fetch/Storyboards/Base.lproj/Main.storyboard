@@ -54,9 +54,17 @@
                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart-fill-red" translatesAutoresizingMaskIntoConstraints="NO" id="uqe-ib-Ibm">
+                                                    <rect key="frame" x="0.0" y="-8" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="UbC-y2-Pu2"/>
+                                                        <constraint firstAttribute="width" constant="40" id="VWc-eI-uzZ"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="uk0-NY-gyD" firstAttribute="leading" secondItem="Jfm-3N-xhu" secondAttribute="trailing" constant="22" id="43t-pR-F4x"/>
+                                                <constraint firstItem="uqe-ib-Ibm" firstAttribute="top" secondItem="hr9-oR-LWW" secondAttribute="top" constant="-8" id="AWI-0h-Lep"/>
                                                 <constraint firstItem="uk0-NY-gyD" firstAttribute="trailing" secondItem="hr9-oR-LWW" secondAttribute="trailingMargin" id="LzS-b1-03k"/>
                                                 <constraint firstItem="ojh-QH-V0D" firstAttribute="top" secondItem="YrB-ds-n7h" secondAttribute="bottom" constant="8" id="Nax-NO-qNq"/>
                                                 <constraint firstItem="uk0-NY-gyD" firstAttribute="leading" secondItem="Jfm-3N-xhu" secondAttribute="trailing" constant="22" id="VEy-a4-DRE"/>
@@ -70,12 +78,14 @@
                                                 <constraint firstItem="uk0-NY-gyD" firstAttribute="top" secondItem="hr9-oR-LWW" secondAttribute="topMargin" id="q7M-wD-y81"/>
                                                 <constraint firstItem="Jfm-3N-xhu" firstAttribute="leading" secondItem="hr9-oR-LWW" secondAttribute="leadingMargin" id="s2e-Uh-vrd"/>
                                                 <constraint firstItem="Jfm-3N-xhu" firstAttribute="top" secondItem="hr9-oR-LWW" secondAttribute="topMargin" id="w1b-GL-2VN"/>
+                                                <constraint firstItem="uqe-ib-Ibm" firstAttribute="leading" secondItem="hr9-oR-LWW" secondAttribute="leading" id="xap-Md-UJW"/>
                                                 <constraint firstItem="ojh-QH-V0D" firstAttribute="trailing" secondItem="hr9-oR-LWW" secondAttribute="trailingMargin" id="zLf-Mt-rSe"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="dateLabel" destination="ojh-QH-V0D" id="Ked-lT-wIx"/>
                                             <outlet property="eventImageView" destination="Jfm-3N-xhu" id="DUx-sy-tfg"/>
+                                            <outlet property="isFavoriteImageView" destination="uqe-ib-Ibm" id="QGC-f5-SDN"/>
                                             <outlet property="locationLabel" destination="YrB-ds-n7h" id="VNU-Bx-5PU"/>
                                             <outlet property="titleLabel" destination="uk0-NY-gyD" id="SnW-8T-oQZ"/>
                                         </connections>
@@ -123,6 +133,7 @@
     </scenes>
     <resources>
         <image name="basketball" width="280" height="210"/>
+        <image name="heart-fill-red" width="100" height="100"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

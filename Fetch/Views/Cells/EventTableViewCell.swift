@@ -13,15 +13,16 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var isFavoriteImageView: UIImageView!
     
     var dateFormatter: DateFormatter?
+    var isFavorite: Bool?
     
     var event: Event? {
         didSet {
             updateViews()
         }
     }
-    
     
     private func updateViews() {
         guard let event = event else { return }
@@ -31,6 +32,10 @@ class EventTableViewCell: UITableViewCell {
         locationLabel.text = "\(event.venue.city), \(event.venue.state)"
         if let dateFormatter = dateFormatter {
             dateLabel.text = dateFormatter.string(from: event.dateTime)
+        }
+        if let isFavorite = isFavorite {
+            // Because its defaulted to hidden we need to negate value
+            isFavoriteImageView.isHidden = !isFavorite
         }
         
     }

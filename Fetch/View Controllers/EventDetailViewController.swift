@@ -14,6 +14,7 @@ class EventDetailViewController: UIViewController {
     let locationLabel = UILabel()
     let headerView = UIView()
     let likeButton = UIButton()
+    var favoritesController: FavoriteComtroller?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +26,7 @@ class EventDetailViewController: UIViewController {
         
         guard let event = event else { return }
         
-        configureHeaderView()
+        configureHeaderView(for: event)
         configureImageView(for: event)
         configureDateLabel(for: event)
         configureLocationLabel(for: event)
@@ -77,7 +78,7 @@ class EventDetailViewController: UIViewController {
         ])
     }
     
-    private func configureHeaderView() {
+    private func configureHeaderView(for event: Event) {
         let containerView = headerView
         let backButton = UIButton()
         let titleLabel = UILabel()
@@ -112,6 +113,9 @@ class EventDetailViewController: UIViewController {
         likeButton.setBackgroundImage(UIImage(named: "heart-gray"), for: .normal)
         likeButton.setBackgroundImage(UIImage(named: "heart-fill-red"), for: .selected)
         likeButton.tintColor = .lightGray
+        if let _ = favoritesController?.favorites[event.id] {
+            likeButton.isSelected = true
+        }
         likeButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             likeButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0),
@@ -121,7 +125,7 @@ class EventDetailViewController: UIViewController {
         ])
         
         titleLabel.numberOfLines = 0
-        titleLabel.text = event?.title
+        titleLabel.text = event.title
         titleLabel.font = .systemFont(ofSize: 24, weight: .bold)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -147,7 +151,14 @@ class EventDetailViewController: UIViewController {
     }
     
     @objc func likeTapped() {
+        guard let favoritesController = favoritesController, let event = event else { return }
         likeButton.isSelected.toggle()
+        if likeButton.isSelected {
+            favoritesController.addToFavorites(event: event)
+        } else {
+            favoritesController.removeFromFavorites(event: event)
+        }
+        
     }
     
 }
