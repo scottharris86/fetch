@@ -14,6 +14,7 @@ struct Event: Decodable {
     let eventType: String
     let venue: Venue
     let imageURL: URL
+    var imageData: Data?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -51,6 +52,10 @@ struct Event: Decodable {
         
         imageURL = URL(string: imageURLString)!
         
+    }
+    
+    mutating func setImageData(data: Data) {
+        self.imageData = data
     }
     
 }

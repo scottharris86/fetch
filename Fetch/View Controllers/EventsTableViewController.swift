@@ -24,6 +24,7 @@ class EventsTableViewController: UIViewController {
             configureNavbarAppearance()
         }
         tableView.dataSource = self
+        tableView.delegate = self
         configureSearchController()
         fetchEvents()
     }
@@ -116,12 +117,51 @@ extension EventsTableViewController: UITableViewDataSource {
         let event = events[indexPath.row]
         cell.dateFormatter = dateFormatter
         cell.event = event
+        loadImage(forCell: cell, forItemAt: indexPath)
         
         return cell
     }
     
+    private func loadImage(forCell cell: EventTableViewCell, forItemAt indexPath: IndexPath) {
+        var event = events[indexPath.row]
+        
+        APIController.fetchImage(from: event.imageURL) { (data, error) in
+            if let _ = error {
+                return
+            }
+            
+            if let data = data {
+                DispatchQueue.main.async {
+                    if let currentIndexPath = self.tableView.indexPath(for: cell), currentIndexPath != indexPath {
+                        // Cell was reused
+                        return
+                    }
+                    if let image = UIImage(data: data) {
+                        // For now we'll just cache the image data on the model itself
+                        event.setImageData(data: data)
+                        self.events[indexPath.row] = event
+                        cell.eventImageView.image = image
+                        
+                    }
+                    
+                }
+            }
+        }
+    }
+    
+    
     private func search(text: String) {
         self.fetchEvents(searchText: text)
+    }
+}
+
+extension EventsTableViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let event = events[indexPath.row]
+        let detailVC = EventDetailViewController()
+        detailVC.event = event
+        detailVC.modalPresentationStyle = .fullScreen
+        present(detailVC, animated: true)
     }
 }
 
@@ -141,10 +181,11 @@ extension EventsTableViewController: UISearchResultsUpdating, UISearchBarDelegat
         let task = DispatchWorkItem { [weak self] in
             self?.search(text: searchText)
         }
+        
+        // Assign task to property
         self.searchTask = task
         
         // Execute task in 0.25 seconds (if not cancelled !)
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.25, execute: task)
     }
 }
-
